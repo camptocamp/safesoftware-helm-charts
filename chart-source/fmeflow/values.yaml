@@ -288,6 +288,7 @@ storage:
     class:
     path:
     volumePath: ""
+    existingPersistentVolume: ''
 
 postgresql:
   image:
