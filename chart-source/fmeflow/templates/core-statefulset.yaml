@@ -65,6 +65,9 @@ spec:
               name: trusted-ca-certs
               readOnly: true
           {{- end }}
+{{- with .Values.fmeflow.extraVolumeMounts }}
+{{ toYaml . | indent 12 }}
+{{- end }}
           env:
             - name: PRIMARY_PROCESS
               value: core
@@ -192,6 +195,9 @@ spec:
               name: trusted-ca-certs
               readOnly: true
           {{- end }}
+{{- with .Values.fmeflow.extraVolumeMounts }}
+{{ toYaml . | indent 12 }}
+{{- end }}
           env:
             - name: COREHOSTNAME
               value: localhost
@@ -274,6 +280,9 @@ spec:
               {{- if .Values.storage.fmeflow.volumePath }}
               subPath: {{ .Values.storage.fmeflow.volumePath }}
               {{- end }}
+{{- with .Values.fmeflow.extraVolumeMounts }}
+{{ toYaml . | indent 12 }}
+{{- end }}
           env:
             - name: EXTERNALHOSTNAME
               value: {{ .Values.deployment.hostname }}
@@ -328,6 +337,9 @@ spec:
               {{- if .Values.storage.fmeflow.volumePath }}
               subPath: {{ .Values.storage.fmeflow.volumePath }}
               {{- end }}
+{{- with .Values.fmeflow.extraVolumeMounts }}
+{{ toYaml . | indent 12 }}
+{{- end }}
           env:
             - name: PRIMARY_PROCESS
               value: initpgsql
@@ -379,6 +391,9 @@ spec:
           secret:
             secretName: {{ .Values.fmeflow.trustedCACerts.secretName }}
         {{- end }}
+{{- with .Values.fmeflow.extraVolumes }}
+{{ toYaml . | indent 8 }}
+{{- end }}
       {{- if .Values.scheduling.core.nodeSelector }}
       nodeSelector:
 {{ toYaml .Values.scheduling.core.nodeSelector | indent 8 }}
