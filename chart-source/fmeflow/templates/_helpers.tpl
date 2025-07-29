@@ -235,3 +235,10 @@ policy/v1
 policy/v1beta1
 {{- end -}}
 {{- end -}}
+
+{{- define "fmeflow.podConfig" -}}
+{{- if .Values.fmeflow.imagePullSecrets -}}
+imagePullSecrets:
+{{- toYaml .Values.fmeflow.imagePullSecrets | nindent 2 }}
+{{- end }}
+{{- end -}}

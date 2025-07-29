@@ -28,6 +28,7 @@ spec:
 {{ toYaml . | indent 8 }}
       {{- end }}
     spec:
+      {{- include "fmeflow.podConfig" $ | nindent 6 }}
       containers:
         - image: {{ template "fmeflow.image.registry" . }}/{{ template "fmeflow.image.namespace" . }}/fmeflow-queue:{{ template "fmeflow.image.tag" . }}
           name: queue

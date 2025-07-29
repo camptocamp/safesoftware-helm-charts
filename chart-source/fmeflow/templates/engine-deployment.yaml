@@ -28,6 +28,7 @@ spec:
 {{ toYaml . | indent 8 }}
       {{- end }}
     spec:
+      {{- include "fmeflow.podConfig" $ | nindent 6 }}
       containers:
         - image: {{ if .image }}{{ if .image.registry }}{{ .image.registry }}{{ else }}{{ template "fmeflow.image.registry" $ }}{{ end }}/{{ if .image.namespace }}{{ .image.namespace }}{{ else }}{{ template "fmeflow.image.namespace" $ }}{{ end }}/fmeflow-engine:{{ if .image.tag }}{{ .image.tag }}{{ else }}{{ template "fmeflow.image.tag" $ }}{{ end }}{{else}}{{ template "fmeflow.image.registry" $ }}/{{ template "fmeflow.image.namespace" $ }}/fmeflow-engine:{{ template "fmeflow.image.tag" $ }}{{ end }}
           name: engine

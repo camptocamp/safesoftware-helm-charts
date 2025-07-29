@@ -28,6 +28,7 @@ spec:
 {{ toYaml . | indent 8 }}
       {{- end }}
     spec:
+      {{- include "fmeflow.podConfig" $ | nindent 6 }}
       securityContext:
         {{- if or .Values.storage.useHostDir .Values.deployment.startAsRoot }}
         runAsUser: 0
